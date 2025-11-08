@@ -21,7 +21,7 @@
     "nodemon": "^3.1.10",
     "socket.io": "^4.8.1",
     "uuid": "^9.0.1",
-    "y-leveldb": "^0.1.0",
-    "y-socket.io": "^1.1.0"
+    "y-mongodb-provider": "^0.2.1",
+    "y-socket.io": "^1.1.3"
   }
 }

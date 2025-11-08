@@ -9,7 +9,6 @@ const Whiteboard = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-  // Connect to the y-socket.io server using the documentId as the room
   const store = useYjsStore({
     roomId: documentId,
     hostUrl: 'ws://localhost:3001',
@@ -26,11 +25,9 @@ const Whiteboard = () => {
       <Tldraw
         store={store}
         identity={{
-          id: user.id,
-          name: user.name,
+          id: user?.id ?? 'anonymous',
+          name: user?.name ?? 'Anonymous',
         }}
-        // You can customize the UI by hiding parts of it
-        // hideUi
       />
       {/* UI Overlays */}
       <div style={{ position: 'absolute', top: 10, left: 10, zIndex: 999, display: 'flex', gap: '10px' }}>

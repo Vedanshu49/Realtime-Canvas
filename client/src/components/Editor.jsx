@@ -6,10 +6,16 @@ import Image from '@tiptap/extension-image';
 import TaskList from '@tiptap/extension-task-list';
 import TaskItem from '@tiptap/extension-task-item';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
-import { lowlight } from 'lowlight/lib/core';
-import javascript from 'lowlight/lib/languages/javascript';
-import css from 'lowlight/lib/languages/css';
-import html from 'lowlight/lib/languages/xml'; // For HTML
+// import { lowlight } from 'lowlight/lib/core';
+// import javascript from 'lowlight/lib/languages/javascript';
+// import css from 'lowlight/lib/languages/css';
+// import html from 'lowlight/lib/languages/xml'; // For HTML
+
+import { createLowlight, common } from 'lowlight';
+
+const lowlight = createLowlight(common);
+
+
 import * as Y from 'yjs';
 import { UndoManager } from 'yjs';
 import { SocketIOProvider } from 'y-socket.io';

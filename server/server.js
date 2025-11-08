@@ -2,8 +2,9 @@ const express = require('express');
 const http = require('http');
 const { Server } = require("socket.io");
 const cors = require('cors');
-const { YSocketIO } = require('y-socket.io');
-const { LevelDB } = require('y-leveldb');
+// This line has been corrected to fix the new error
+const { YSocketIO } = require('y-socket.io/dist/server'); 
+const { MongodbPersistence } = require('y-mongodb-provider');
 const connectDB = require('./db');
 const jwt = require('jsonwebtoken');
 const Document = require('./models/Document');
@@ -61,12 +62,15 @@ io.use(async (socket, next) => {
   }
 });
 
-// Set up persistence with y-leveldb
-const ldb = new LevelDB('./db');
+// Set up persistence with the new y-mongodb-provider
+const mdb = new MongodbPersistence(process.env.MONGODB_URI, {
+  collectionName: 'yjs_transactions',
+  flushSize: 100,
+});
 
 // Create the YSocketIO instance and connect it to the persistence layer
 const ysocketio = new YSocketIO(io, {
-  persistence: ldb
+  persistence: mdb
 });
 
 // Start the y-socket.io server
@@ -86,7 +90,7 @@ app.use('/api/comments', require('./routes/comments'));
 
 const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
-  console.log(`Server is running on port `);
+  console.log(`Server is running on port ${PORT}`);
   ysocketio.initialize();
 });
-module.exports = server; 
+module.exports = server;
