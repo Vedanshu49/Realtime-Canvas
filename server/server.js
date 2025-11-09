@@ -10,8 +10,6 @@ const connectDB = require('./db');
 const jwt = require('jsonwebtoken');
 const Document = require('./models/Document');
 
-const path = require('path');
-
 
 
 // Connect to database
@@ -204,42 +202,46 @@ ysocketio.on('all-document-connections-closed', async (doc) => {
 
 // Define API routes
 
+
+
 app.use('/api/auth', require('./routes/auth'));
 
+
+
 app.use('/api/documents', require('./routes/documents'));
+
+
 
 app.use('/api/comments', require('./routes/comments'));
 
 
 
-// Serve static assets in production
 
-if (process.env.NODE_ENV === 'production') {
-
-  // Set static folder
-
-  app.use(express.static(path.join(__dirname, '../client/dist')));
-
-
-
-  app.get('*', (req, res) => {
-
-    res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'));
-
-  });
-
-}
 
 
 
 const PORT = process.env.PORT || 3001;
 
+
+
 server.listen(PORT, () => {
+
+
 
   console.log(`Server is running on port ${PORT}`);
 
+
+
   ysocketio.initialize();
+
+
 
 });
 
+
+
 module.exports = server;
+
+
+
+
