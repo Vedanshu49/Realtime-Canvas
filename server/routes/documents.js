@@ -74,7 +74,7 @@ router.post('/:id/collaborators', auth, async (req, res) => {
     if (document.owner.toString() !== req.user.id) return res.status(403).json({ msg: 'Only the owner can add collaborators' });
     
     const userToAdd = await User.findOne({ email });
-    if (!userToAdd) return res.status(404).json({ msg: 'User not found' });
+    if (!userToAdd) return res.status(404).json({ msg: 'Could not add collaborator' });
     if (document.collaborators.some(c => c.toString() === userToAdd.id)) return res.status(400).json({ msg: 'User is already a collaborator' });
 
     document.collaborators.push(userToAdd.id);

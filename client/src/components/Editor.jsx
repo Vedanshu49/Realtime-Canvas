@@ -101,7 +101,7 @@ const Editor = () => {
 
         const fetchComments = async () => {
             try {
-                const res = await axios.get(`http://localhost:3001/api/comments/`);
+                const res = await axios.get(`http://localhost:3001/api/comments/${documentId}`);
                 setComments(res.data);
             } catch (error) {
                 console.error("Failed to fetch comments", error);
