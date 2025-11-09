@@ -1,4 +1,5 @@
-import { Tldraw, useYjsStore } from 'tldraw';
+import { Tldraw } from 'tldraw';
+import { useYjsStore } from '@tldraw/yjs';
 import 'tldraw/tldraw.css';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -11,7 +12,7 @@ const Whiteboard = () => {
 
   const store = useYjsStore({
     roomId: documentId,
-    hostUrl: 'ws://localhost:3001',
+    hostUrl: 'wss://realtime-canvas-flax.vercel.app',
     auth: { token: localStorage.getItem('token') },
   });
 
