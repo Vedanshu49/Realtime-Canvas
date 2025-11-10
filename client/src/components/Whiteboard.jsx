@@ -1,8 +1,7 @@
-import { Tldraw } from 'tldraw';
-import { useYjsStore } from '@tldraw/yjs';
+import { Tldraw, useYjsStore } from 'tldraw'; // Corrected: useYjsStore is imported from 'tldraw'
 import 'tldraw/tldraw.css';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext.jsx'; // Attempting fix by adding file extension
 import { Home, LogOut } from 'lucide-react';
 
 const Whiteboard = () => {
